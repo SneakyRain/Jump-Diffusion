@@ -6,7 +6,7 @@ Author:
 
 This code is part of the project Merton Jump Diffusion
 Process for Stock Price Modelling. This work was done in
-partial fulfilment of the course MATH F424 (pplied Stochastic Process),
+partial fulfilment of the course MATH F424 (Applied Stochastic Process),
 Mathematics Department, BITS Pilani, India
 
 Data:
