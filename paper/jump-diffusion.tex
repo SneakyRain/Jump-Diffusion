@@ -1,0 +1,37 @@
+\documentclass[paper.tex]{subfiles}
+
+\begin{document}
+    The Jump Diffusion Model is a combination of a Geometric Brownian Motion to model the general trend in the stock prices, and a Compound Poisson process to model the sudden jumps/falls.
+    According to MJD stock prices are governed by the following SDE
+    \begin{equation}
+        dS_{t} = \mu_{d} S_{t} dt + \sigma_{d} S_{t} dW_{t} + S_{t} dJ_{t}
+        \label{eq: mjd-sde}
+    \end{equation}
+    where $ W_{t} $ is brownian motion and $ J_{t} =  \sum \limits_{k=1}^{N_{t}} Y_{k} $ is compound poisson process as desscribed by Eq. (\ref{eq: compound-poisson-process}).
+
+    Solving the above SDE gives the stock prices as:
+    \begin{equation}
+        S_{T} = S_0 \exp \left[ \left( \mu_{d}-\dfrac{\sigma_{d}^{2}}{2} \right) T + \sigma_{d} \int_{0}^{T} dW_t + \int_{0}^{T} dJ_{t} \right]
+        \label{eq: mjd-equation}
+    \end{equation}
+    Where $S_0$ is the stock price at the beginning of the period and $ S_{T} $ is the stock price at time $ T $.
+    Here $\mu_d, ~ \sigma_d$ are the diffusion drift and volatility, respectively, and $Y_{k}$ is the $ k^{th} $ jump intensity.
+    $$ J_{t} = \left \{\sum_{k=1}^{N_{t}}Y_{k} \right \}_{t \geqslant 0} $$ is the compound poisson process with normally distributed jumps sampled from $\mathcal{N}(\mu_{j}, \sigma_{j}^{2})$.
+
+    Taking natural log on both sides of Eq. \ref{eq: mjd-equation},
+    \begin{equation}
+        \textup{ln}S_{T} = \text{ln}S_{0} + \left( \mu_{d} - \dfrac{\sigma_{d}^{2}}{2} \right) T + \sigma_{d} \int_{0}^{T} dW_t + \int_{0}^{T} dJ_{t}
+        \label{eq: mjd-equation-2}
+    \end{equation}
+
+    Therefore, log returns of the stock price as defined in \ref{eq: mjd-equation} is defined as:
+    \begin{equation}
+            R_{\Delta T} = \text{ln} \dfrac{S_{T}}{S_{0}} = \left( \mu_{d} - \dfrac{\sigma_{d}^{2}}{2} \right) {\Delta T} ++ \sigma_{d} \int_{0}^{T} dW_t + \int_{0}^{T} dJ_{t}
+            \label{eq: mjd-returns}
+    \end{equation}
+    such that,
+    \begin{equation}
+        S_{T} = S_0e^{R_{\Delta T}}
+        \label{eq: mjd-equation-3}
+    \end{equation}
+\end{document}

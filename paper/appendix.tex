@@ -1,0 +1,59 @@
+\documentclass[paper.tex]{subfiles}
+
+\begin{document}
+    \section{Mathematical Preliminaries}
+        \subsection{Poisson Process}
+        A Poisson Process $ \boldsymbol{N} = \{N_{t}: t \geqslant 0 \} $ is a counting process, which is used to model occurence of random events such that their interarrival times are exponentially distributed with parametrer $ \lambda $.
+        The number of events between any time interval $ (t, ~ t + \Delta t) $ follows poisson distribution, as given in Eq. (\ref{eq: poisson-distribution})
+        \begin{equation}
+            \mathbb{P}\{N=k\}= \dfrac{(\lambda \Delta t)^{k}}{k!} e^{-\lambda \Delta t}
+            \label{eq: poisson-distribution}
+        \end{equation}
+        with,
+        \begin{equation}
+            \mathbb{E}\left[ N \right] = \lambda \Delta t
+            \label{eq: poisson-mean}
+        \end{equation}
+          
+        Poisson process is used to model a wide variety of process for e.g. such as customer arrival at a store, phone calls at a switchboard, or earthquakes etc.
+        
+        \subsection{Compound Poisson Process}
+        Compound Poisson Process $\boldsymbol{J}=\left\{J_{t}: t \geqslant 0 \right\}$  are a generalilzation of poisson process.
+        For these process the interarrival time between random events is still exponentially distributed, but the size of jump is not 1, rather it is randomly distributed according to some law $ F $.
+        Commonly, the law $ F $ is assumed to be Normal Distribution.
+
+        At any instant, the value of process is given by the sum of the jump size ($ Y_{k} $) till that instant.
+        such that,
+        \begin{equation}
+            J_{t}=\sum_{k=1}^{N_{t}} ~ Y_{k}
+            \label{eq: compound-poisson-process}
+        \end{equation}
+        where, $ N_{t} $ is number of poisson events till time $ t $.
+        Therefore, a  compound Poisson process is a real-valued right-continuous process $\left(Z_{t}: t \geqslant 0\right)$ with the following properties.
+        \begin{enumerate}
+            \item Finitely many jumps: for all $\omega \in \Omega$, sampled path $t \mapsto J_{t}(\omega)$ has finitely many jumps in finite intervals.
+            \item Independent increments: for all $t, ~ s \geqslant 0 ; ~ J_{t+s} - J_{t}$ is independent of past $\{J_{u}: u \leq t\}$,
+            \item Stationary increments: for all $t, ~ s \geqslant 0$, distribution of $J_{t+s} - J_{t}$ depends only on $s$ and not on $t$.
+        \end{enumerate}
+
+        \subsection{Brownian Motion}
+        A stochastic process $ \boldsymbol{W} = \{W_{t}: t \geqslant 0 t\} $ is called a standard Brownian Motion if the following properties hold:
+        \begin{enumerate}
+            \item $ W_{0} = 0 $.
+            \item Independent increments: for every time point $ 0 \leqslant t_{1} \leqslant t_{2} \leqslant \hdots \leqslant t_{n} $, the increments of $ W $: $ W_{t_{n}} - W_{t_{n-1}} $, $ W_{t_{n-1}} - W_{t_{n-2}}$, $ \hdots $, $ W_{t_{1}} - W_{t_{0}} $ are independent random variable. 
+            \item Normal distribution: For every $ \Delta t $, the increment $ \Delta W_{t} = W_{t + \Delta t} - W_{t} \sim \mathcal{N}(0, \Delta t)$
+            % very time point $ 0 \leqslant t_{1} \leqslant t_{2} \leqslant \hdots \leqslant t_{n} $, the increments of $ W $: 
+            % $ W_{t_{n}} - W_{t_{n-1}} $, $ W_{t_{n-1}} - W_{t_{n-2}}$, $ \hdots $, $ W_{t_{1}} - W_{t_{0}} $ are normally distributed with zero mean and variance $ ( t_{n} - t_{n-1} )$ , $ ( t_{n-1} - t_{n-2} )$, $ \hdots $, $ ( t_{1} - t_{0} ) $, respectively.
+            \item Almost surely, the function $ t \to W_{t} $ is a continuous function for every t.
+        \end{enumerate}
+    
+        \newpage
+    \section{Code}
+        \subsection{Monte Carlo}
+        \lstinputlisting[language=Python]{../monte-carlo.py}
+        \subsection{Parameter Estimation}
+        \lstinputlisting[language=Python]{../parameters.py}
+        \subsection{Comparison between Models}
+        \lstinputlisting[language=Python]{../compare.py}
+
+\end{document}

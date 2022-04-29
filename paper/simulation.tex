@@ -1,0 +1,49 @@
+\documentclass[paper.tex]{subfiles}
+
+\begin{document}
+
+    \subsection{Poisson Process}
+        To simulate a poisson process, the fact that the waiting time between adjacent poisson events is exponentially distributed is used.
+        Thus, to get the occurence time of $(k+1)^{th}$ poisson event, a randomly sampled $ \tau $ from the exponential distribution is taken and added to the time of $(k)^{th}$ poisson event. 
+
+        First, a random sample from exponential doistribution with parameter $ \lambda $ is taken. This is used as the occurence time ($ \tau_{1} $) for first poisson event.
+        Next another sample ($ \tau_{2} $) is taken from exponential distribution and added to $ \tau_{1} $.
+        This is occurence time for second poisson event. This process is repeated.
+
+        Formally, 
+        \begin{equation}
+            T_{n} = \sum_{k=1}^{n}\tau_{i}
+            \label{eq: poisson-time}
+        \end{equation}
+        where $\tau_{i}, ~ \forall ~ i$ are exponentially distributed and $ T_{n} $ is the time of occurence of $ n^{th} $ poisson event.
+    
+    \subsection{Compound Poisson Process}
+        Compound poisson process are simulated just like poisson process, except that now increment at each jump is $ Y_{k} $
+        where,
+        \begin{equation}
+            Y_{k} \sim \mathcal{N}(\mu_{j}, \sigma_{j}^{2})
+            \label{eq: compound-poisson-jump-distribution}
+        \end{equation}
+        At each instant $ Y_{k} $ is sampled from $ \mathcal{N}(\mu_{j}, \sigma_{j}^{2}) $ along with $ \tau_{k} $ from exponential Distribution.
+        $ J_{t} $ is then calculated as,
+        \begin{equation}
+            J_{t} = \sum_{k=1}^{N_{t}}Y_{k}
+        \end{equation}
+
+    \subsection{Geometric Brownian Motion}
+    For given parameters $ \mu $ and $ \sigma $ Geometric Brownian Motion is simulated by randomly sampling a standard normal variable $ \epsilon $, such that $ \epsilon \sim \mathcal{N}(0, 1) $.
+    Then, stock price at next instant are calculated using previous price using the following equation
+    \begin{equation}
+        S_{t + \Delta t} = S_{t} \exp \left[ \left( \mu - \dfrac{\sigma^{2}}{2}\right) \Delta t + \sigma \epsilon \Delta t \right]
+        \label{eq: gbm-simulation}
+    \end{equation}
+    Here $ \mu $ is average rate of return and $ \sigma $ is average volatility.
+    
+    \subsection{Jump Diffusion Process}
+        To simulate a MJD process, first Geometric Brownian motion and a Compound Poisson Process are simulated independently.
+        Then the log returns of the two process are added to calculate the total return at each point of time (\ref{eq: mjd-returns})
+        The stock price is then computed from the log returns by using the Eq. (\ref{eq: mjd-equation-3})
+        \begin{equation}
+            S_{T} = S_0e^{R_{\Delta T}}
+        \end{equation}
+\end{document}

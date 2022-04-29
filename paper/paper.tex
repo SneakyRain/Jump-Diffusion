@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+
+% Add packages here
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% To display figures
+\usepackage{graphicx}
+
+% To display image side by side
+\usepackage{subfig}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% To use subfiles
+\usepackage{subfiles}
+
+% To list code
+\usepackage{listings}
+\usepackage{xcolor}
+
+% To define geometry
+\usepackage[margin= 1in]{geometry}
+
+% To link toc with the relevant section
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=blue,
+	linktoc=all
+}
+
+% To change code display
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+	\subfile{cover.tex}
+	
+	\label{sec:Abstract}
+	\subfile{abstract.tex}
+	\newpage
+
+	\tableofcontents
+	\setcounter{page}{1}
+	\newpage
+
+	\section{Introduction}
+	\label{sec:Introduction}
+	\subfile{introduction.tex}
+
+	\section{Black-Scholes Model}
+	\label{sec:Black-Scholes Model}
+	\subfile{black-scholes.tex}
+
+	\section{Merton Jump Diffusion Model}
+	\label{sec:Merton Jump Diffusion Model}
+	\subfile{jump-diffusion.tex}
+
+	\section{Estimation of Model Parameters}
+	\label{sec:Estimation of Model Parameters}
+	\subfile{model-calibration.tex}
+
+	\section{Simulation}
+	\label{sec:Simulation}
+	\subfile{simulation.tex}
+	
+	\section{Results}
+	\label{sec:Results}
+	\subfile{results.tex}
+
+	\section{Conclusion}
+	\label{sec:Conclusion}
+	\subfile{conclusion.tex}
+	
+	\newpage
+	\appendix
+	\appendixname
+	\subfile{appendix.tex}
+\end{document}

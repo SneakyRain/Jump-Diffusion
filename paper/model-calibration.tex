@@ -1,0 +1,23 @@
+\documentclass[paper.tex]{subfiles}
+
+\begin{document}
+    Maximum Likelihood Estimation (MLE) method is used to estimate the model parameters.
+    The distribution of log returns following MJD model is given by 
+    \begin{equation}
+        f_{R_{\Delta t}}(x) = \sum_{k=0}^{\infty} ~ p_{k}(\lambda \Delta t) ~  \varphi(x | (\mu_{d} - \dfrac{\sigma_{d}^{2}}{2} )\Delta t + \mu_{j}k, \sigma_{d}^{2}\Delta t + \sigma_{j}^{2}k)
+        \label{eq:log-returns-pdf}
+    \end{equation}
+    where, $ p_{k}(\lambda \Delta t) = \mathbb{P} \{\Delta N = k \} = \dfrac{(\lambda \Delta t)^{k}}{k!} e^{-\lambda \Delta t} $ and $ \varphi $ is gaussian pdf.
+    Eq (\ref{eq:log-returns-pdf}) is used to form likelihood function.
+    \begin{equation}
+        L(\theta;x) = \prod_{i=0}^{n} ~ f_{R_{\Delta t}}(x_{i})
+        \label{eq:likelihood-function}
+    \end{equation}
+    Taking log on both sides gives,
+    \begin{equation}
+        -\text{ln} L(\theta;x) = \sum_{i=0}^{n} -\text{ln} f_{R_{\Delta t}}(x_{i})
+        \label{eq:log-likelihood-function}
+    \end{equation}
+    In above Eq (\ref{eq:likelihood-function}) \& Eq (\ref{eq:log-likelihood-function}) $ f_{R_{\Delta t}}(x_{i}) $ is calculated using log returns data.
+    It is often convenient to minimize log likelihood function. Any numerical solver can be used to minimize the above function, with the constraint $ \lambda \geq 0 $.
+\end{document}

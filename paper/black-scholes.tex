@@ -1,0 +1,37 @@
+\documentclass[paper.tex]{subfiles}
+
+\begin{document}
+    Black Scholes Model assumes that stock prices follow a Geometric Brownian Motion.
+    GBM contains two component i.e. drift and diffusion term.
+    According to GBM, long term trend in stock price are caused by drift term and short term random movements are due to diffusion term.
+    Stock prices follow the SDE
+    \begin{equation}
+        dS_{t}=\mu S_{t} dt+\sigma S_{t} dW_{t}
+        \label{eq: gbm-sde}
+    \end{equation}
+    where, $W_{t}$ is a Wiener process or Brownian motion, and $ \mu $ ('Average Drift'), $ \sigma $ ('Volatility') are constants.
+    The former is used to model deterministic trends, while the latter term is often used to model a set of unpredictable events occurring during this motion.For an arbitrary initial value $S_{0}$ the above SDE has the analytic solution (under Itô's interpretation),
+    \begin{equation}
+        S_{T} = S_{0} \exp \left[ \left( \mu - \dfrac{\sigma^{2}}{2}\right) T + \sigma \int_{0}^{T}dW_{t} \right]
+        \label{eq: gbm-equation}
+    \end{equation}
+    Solution of the above SDE requires Itô calculus. Applying Itô's formula leads to,
+    \begin{equation}
+        d(\ln S_{t}) = \left( \ln S_{t} \right)^{\prime} dS_{t} + \dfrac{1}{2} \left( \ln S_{t} \right)^{\prime \prime} dS_{t} dS_{t} = \dfrac{dS_{t}}{S_{t}} - \dfrac{1}{2} \dfrac{1}{S_{t}^{2}} dS_{t} dS_{t}
+        \label{eq: log-ito-equation}
+    \end{equation}
+    where $dS_{t} dS_{t}$ is simply quadratic variation of the SDE.
+    $$ dS_{t} dS_{t} = \sigma^{2} S_{t}^{2} dW_{t} dW_{t} + 2 \sigma S_{t}^{2} \mu dW_{t} dt + \mu^{2} S_{t}^{2} dt^{2} $$
+    And since,
+    $$  dW_{t} dW_{t} = dt ~~~~~~~~~  dW_{t} dt = 0 ~~~~~~~~~  dt dt = 0  $$
+    Eq. \ref{eq: log-ito-equation} simplifies to
+    \begin{equation}
+        d(\ln S_{t}) = \left( \mu - \dfrac{\sigma^{2}}{2} \right) dt + \sigma dW_{t}
+        \label{eq: log-ito-2}
+    \end{equation}
+    Finally
+    \begin{equation}
+        R_{\Delta T} = \ln \dfrac{S_{T}}{S_{0}} = \left( \mu - \dfrac{\sigma^{2}}{2}\right) \Delta T + \sigma \int_{0}^{T}dW_{t}
+    \end{equation}
+
+\end{document}
